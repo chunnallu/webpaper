@@ -1,6 +1,14 @@
 .mainContent{
 }
 
+.topic{
+    color: #2c2c2c;
+}
+
+.canWrite{
+    color: #0e0745;
+}
+
 .editor{
     position: fixed;
     bottom: 2em;

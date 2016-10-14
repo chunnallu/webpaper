@@ -8,7 +8,7 @@
 
 }
 .Essay .operator{
-    height: 3em;
+    min-height: 3em;
     padding: 0.5em 1em;
     cursor: pointer;
 }

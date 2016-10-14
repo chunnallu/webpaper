@@ -9,9 +9,12 @@ const fs = require('fs');
  * @returns {Array} 文件内容数组
  */
 exports.readFileByLine = function(addr){
-    var text = fs.readFileSync(addr);
+    var text = fs.readFileSync(addr).toString();
     var data = [];
-    text.toString().split(/\r?\n/).forEach(function (line) {
+    if (text[0].charCodeAt() === 65279) { //utf-8编码
+        text = text.substring(1);
+    }
+    text.split(/\r?\n/).forEach(function (line) {
         data.push(line);
     });
     return data;
