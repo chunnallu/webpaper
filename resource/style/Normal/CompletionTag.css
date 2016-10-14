@@ -1,0 +1,28 @@
+.Completion{
+    padding: 0.5em;
+}
+.Completion .question{
+
+}
+.Completion .answer{
+
+}
+.Completion .operator{
+    display: inline-block;
+    background: #cccccc;
+    min-width: 2em;
+    height: 1em;
+    padding: 0 0.5em;
+    cursor: pointer;
+    border-bottom: 1px solid #000000;
+}
+.Completion .showAnswer{
+    padding: 0.5em;
+    cursor:pointer;
+}
+.Completion .showAnswer:hover{
+    color:red;
+}
+.Completion .on{
+    color:red;
+}

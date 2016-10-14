@@ -1,0 +1,9 @@
+.Title{
+    width:100%;
+}
+.Title .text{
+    display: inline-block;
+    width: inherit;
+    text-align: center;
+    font-size: 24px;
+}

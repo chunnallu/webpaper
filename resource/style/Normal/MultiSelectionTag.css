@@ -1,0 +1,45 @@
+.MultiSelection{
+    width:100%;
+}
+
+.MultiSelection .question{
+    padding: 0.3em 0.5em;
+}
+.MultiSelection .answer{
+
+}
+.MultiSelection .operator{
+    display: inline-block;
+    background: #cccccc;
+    width: 1.2em;
+    height: 1em;
+    padding: 0 1em;
+    cursor: pointer;
+}
+.MultiSelection .operator.on{
+    color:red;
+}
+.MultiSelection .showAnswer{
+    padding: 0.5em;
+    cursor:pointer;
+}
+.MultiSelection .showAnswer:hover{
+    color:red;
+}
+.MultiSelection .optionBox{
+    list-style: none;
+    padding: 0 0.4em;
+    margin:0.3em 0;
+}
+.MultiSelection .optionBox li{
+    padding:0.3em 1em;
+    cursor:pointer;
+}
+
+.MultiSelection .optionBox li.selected{
+    background:#dddddd;
+}
+
+.MultiSelection .optionBox li.on{
+    background:red;
+}

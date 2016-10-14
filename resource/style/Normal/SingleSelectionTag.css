@@ -1,0 +1,45 @@
+.SingleSelection{
+    padding: 0.3em 0.5em;
+}
+
+.SingleSelection .question{
+
+}
+.SingleSelection .answer{
+
+}
+.SingleSelection .operator{
+    display: inline-block;
+    background: #cccccc;
+    width: 0.8em;
+    height: 1em;
+    padding: 0 1em;
+    cursor: pointer;
+}
+.SingleSelection .operator.on{
+    color:red;
+}
+.SingleSelection .showAnswer{
+    padding: 0.5em;
+    cursor:pointer;
+}
+.SingleSelection .showAnswer:hover{
+    color:red;
+}
+.SingleSelection .optionBox{
+    list-style: none;
+    padding: 0 0.4em;
+    margin:0.3em 0;
+}
+.SingleSelection .optionBox li{
+    padding:0.3em 1em;
+    cursor:pointer;
+}
+
+.SingleSelection .optionBox li.selected{
+    background:#dddddd;
+}
+
+.SingleSelection .optionBox li.on{
+    background:red;
+}

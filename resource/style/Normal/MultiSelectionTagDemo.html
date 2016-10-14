@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <link href='common.css' rel='stylesheet'/>
+    <link href='MultiSelectionTag.css' rel='stylesheet'/>
+    <style>
+
+    </style>
+    <title>试卷题目</title>
+</head>
+
+<body>
+<div id='qus_1' class='topic MultiSelection'>
+    <div class='question'>
+        2.这是单选题?
+        <span>(</span>
+        <span class='operator'></span>
+        <span>)</span>
+        [<span class='showAnswer'>显示答案</span>]
+    </div>
+    <ul class='optionBox'>
+        <li value='A'>A.选项A</li>
+        <li value='B'>B.选项B</li>
+        <li value='C'>C.选项C</li>
+    </ul>
+    <input class='answer' type='hidden' value='AC'/>
+</div>
+<script>
+    var qus_1 = document.getElementById('qus_1');
+    var qus_1_operator = qus_1.getElementsByClassName('operator')[0];
+    var qus_1_optionBox = qus_1.getElementsByClassName('optionBox')[0];
+    var qus_1_optionList = qus_1_optionBox.getElementsByTagName('li');
+    var qus_1_showAnswerBtn = qus_1.getElementsByClassName('showAnswer')[0];
+    var qus_1_answer = qus_1.getElementsByClassName('answer')[0].value;
+    qus_1_optionBox.addEventListener('click',function(e){
+        if(e.target && e.target.nodeName == 'LI'){
+            e.stopPropagation();
+            //清除答案
+            for(var i =0 ; i<qus_1_optionList.length ; i++){
+                if(qus_1_optionList[i].getAttribute('class') === 'on'){
+                    qus_1_operator.innerText = '';
+                    qus_1_operator.setAttribute('class','operator')
+                    qus_1_optionList[i].setAttribute('class','');
+                }
+            }
+            if(e.target.getAttribute('class') === 'selected'){
+                e.target.setAttribute('class','');
+                var selected = qus_1_operator.innerText;
+                var cancel = e.target.getAttribute('value');
+                selected = selected.replace(cancel,'');
+                qus_1_operator.innerText = selected;
+            }else{
+                e.target.setAttribute('class','selected');
+                qus_1_operator.innerText += e.target.getAttribute('value');
+            }
+        }
+
+    });
+    qus_1_showAnswerBtn.addEventListener('click',function(e){
+        qus_1_answer = qus_1_answer.toUpperCase();
+        qus_1_operator.innerText = qus_1_answer;
+        qus_1_operator.setAttribute('class','operator on');
+        for(var i =0 ; i<qus_1_optionList.length ; i++){
+            qus_1_optionList[i].setAttribute('class','');
+        }
+        for(var i = 0 ; i<qus_1_answer.length ; i++){
+            var index = qus_1_answer[i].charCodeAt() - 'A'.charCodeAt();
+            var option = qus_1_optionList[index];
+            option.setAttribute('class','on');
+        }
+
+
+    })
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../../common/common.css" rel="stylesheet"/>
+    <link href="EssayTag.css" rel="stylesheet"/>
+    <title>试卷题目</title>
+</head>
+
+<body>
+
+<div id="qus_1" class="topic Essay">
+    <div class="question">
+        1.中华人民共和国成立于哪年？
+        [<span class="showAnswer">显示答案</span>]
+    </div>
+    <div class="operator canWrite"></div>
+    <input class="answer" type="hidden" value="1949"/>
+</div>
+<script>
+    var qus_1 = document.getElementById("qus_1");
+    var operator = qus_1.getElementsByClassName("operator")[0];
+    var showAnswerBtn = qus_1.getElementsByClassName("showAnswer")[0];
+    var answer = qus_1.getElementsByClassName("answer")[0].value;
+    operator.addEventListener("click",function(e){
+        if(operator.getAttribute("class").includes("on")){
+            operator.innerHTML = "";
+        }
+        operator.setAttribute("class","operator");
+    });
+    showAnswerBtn.addEventListener("click",function(e){
+        operator.innerHTML = answer;
+        operator.setAttribute("class","operator on");
+    })
+
+</script>
+
+<!--编辑器是公共部分，不属于标签本身-->
+<div class="editor">
+    <textarea class="content" style="display:none"></textarea>
+</div>
+<script>
+    var global_curr_operator;
+    var global_content = document.getElementsByClassName("content")[0];
+    var canWriteList = document.getElementsByClassName("canWrite");
+    global_content.addEventListener("input",function(){
+        global_curr_operator.innerText = global_content.value;
+    })
+    for(var i =0 ; i<canWriteList.length ; i++){
+        canWriteList[i].addEventListener("click",function(e){
+            if(global_curr_operator === e.target){
+                if(global_content.style.display === "block") {
+                    global_content.setAttribute("style","display:none");
+                }else{
+                    global_content.value = global_curr_operator.innerText;
+                    global_content.setAttribute("style","display:block");
+                }
+            }else{
+                global_curr_operator = e.target;
+                global_content.value = global_curr_operator.innerText;
+                global_content.setAttribute("style","display:block");
+            }
+        });
+    }
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!--编辑器是公共部分，不属于标签本身-->
+<div class="editor">
+    <textarea class="content" style="display:none"></textarea>
+</div>
+<script>
+    var global_curr_operator;
+    var global_editor = document.getElementsByClassName("editor")[0];
+    var global_content = document.getElementsByClassName("content")[0];
+    var canWriteList = document.getElementsByClassName("canWrite");
+    global_content.addEventListener("input",function(e){
+        e.stopPropagation();
+        global_curr_operator.innerText = global_content.value;
+    })
+    for(var i =0 ; i<canWriteList.length ; i++){
+        canWriteList[i].addEventListener("click",function(e){
+            e.stopPropagation();
+            if(global_curr_operator === e.target){
+                if(global_content.style.display === "block") {
+                    global_content.setAttribute("style","display:none");
+                }else{
+                    global_content.value = global_curr_operator.innerText;
+                    global_content.setAttribute("style","display:block");
+                }
+            }else{
+                global_curr_operator = e.target;
+                global_content.value = global_curr_operator.innerText;
+                global_content.setAttribute("style","display:block");
+
+            }
+
+            var rect = getRect(document.body);
+            if( rect.isBottom ){
+                global_editor.setAttribute("class","editor bottom");
+            }else{
+                global_editor.setAttribute("class","editor");
+            }
+        });
+    }
+    var topics = document.getElementsByClassName("topic");
+    for(var i = 0 ; i< topics.length ; i++ ){
+        topics[i].addEventListener("click",function(){
+            global_content.setAttribute("style","display:none");
+        });
+    }
+
+
+    /**
+     * 判断可视区域
+     * @param ele 元素
+     * @returns {ClientRect}
+     */
+    function getRect(ele){
+        var inHeight=window.innerHeight,
+                rect=ele.getBoundingClientRect();
+        rect.isVisible = rect.top-inHeight<0;  // 是否在可视区域
+        rect.isBottom = rect.bottom-inHeight<=400;
+        return rect;
+    }
+</script>

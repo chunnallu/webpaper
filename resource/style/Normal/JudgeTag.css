@@ -1,0 +1,29 @@
+.topic{
+}
+.judge{
+    padding: 0.5em;
+}
+.judge .question{
+
+}
+.judge .answer{
+
+}
+.judge .operator{
+    display: inline-block;
+    background: #cccccc;
+    width: 1em;
+    height: 1em;
+    padding: 0 1em;
+    cursor: pointer;
+}
+.judge .showAnswer{
+    padding: 0.5em;
+    cursor:pointer;
+}
+.judge .showAnswer:hover{
+    color:red;
+}
+.judge .on{
+    color:red;
+}

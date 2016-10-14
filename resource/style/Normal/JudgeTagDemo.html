@@ -1,0 +1,43 @@
+<html>
+  <head>
+      <meta charset="utf-8">
+      <link href="JudgeTag.css" rel="stylesheet"/>
+     <title>试卷题目</title>
+  </head>
+
+  <body>
+
+    <div id="qus_1" class="topic Judge">
+        <div class="question">
+            1.这是判断题
+            <span>(</span>
+            <span class="operator"></span>
+            <span>)</span>
+            [<span class="showAnswer">显示答案</span>]
+        </div>
+        <input class="answer" type="hidden" value="√"/>
+    </div>
+    <script>
+        var qus_1 = document.getElementById("qus_1");
+        var operator = qus_1.getElementsByClassName("operator")[0];
+        var showAnswerBtn = qus_1.getElementsByClassName("showAnswer")[0];
+        var answer = qus_1.getElementsByClassName("answer")[0].value;
+        operator.addEventListener("click",function(e){
+            operator.setAttribute("class","operator");
+            var jg = operator.innerHTML;
+            if(jg === "√"){
+                jg = "χ";
+            }else{
+                jg = "√";
+            }
+            operator.innerHTML = jg;
+        });
+        showAnswerBtn.addEventListener("click",function(e){
+            operator.innerHTML = answer;
+            operator.setAttribute("class","operator on");
+        })
+
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,24 @@
+.Essay{
+    padding: 0.5em;
+}
+.Essay .question{
+
+}
+.Essay .answer{
+
+}
+.Essay .operator{
+    height: 3em;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+.Essay .showAnswer{
+    padding: 0.5em;
+    cursor:pointer;
+}
+.Essay .showAnswer:hover{
+    color:red;
+}
+.Essay .on{
+    color:red;
+}
