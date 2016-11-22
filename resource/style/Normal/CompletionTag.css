@@ -26,3 +26,7 @@
 .Completion .on{
     color:red;
 }
+
+.Completion .CompletionEditor{
+    display: none;
+}

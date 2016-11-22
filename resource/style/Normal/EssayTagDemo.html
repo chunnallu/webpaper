@@ -3,7 +3,19 @@
     <meta charset="utf-8">
     <link href="../../common/common.css" rel="stylesheet"/>
     <link href="EssayTag.css" rel="stylesheet"/>
+    <script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
     <title>试卷题目</title>
+    <style>
+        .editor{
+            display: none;
+            position: relative;
+            top:1em;
+            width: 90%;
+            min-height: 10em;
+            max-height: 30em;
+            resize:vertical;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,55 +26,48 @@
         [<span class="showAnswer">显示答案</span>]
     </div>
     <div class="operator canWrite"></div>
+    <textarea class="editor"></textarea>
     <input class="answer" type="hidden" value="1949"/>
 </div>
 <script>
-    var qus_1 = document.getElementById("qus_1");
-    var operator = qus_1.getElementsByClassName("operator")[0];
-    var showAnswerBtn = qus_1.getElementsByClassName("showAnswer")[0];
-    var answer = qus_1.getElementsByClassName("answer")[0].value;
-    operator.addEventListener("click",function(e){
-        if(operator.getAttribute("class").includes("on")){
-            operator.innerHTML = "";
+    var qus_1 = $("#qus_1");
+    var qus_1_operator = qus_1.find(".operator");
+    var qus_1_showAnswerBtn = qus_1.find(".showAnswer");
+    var qus_1_answer = qus_1.find(".answer").val();
+    var qus_1_editor = qus_1.find(".editor");
+    var enterTimes = 0;
+    qus_1_operator.on("click",function(e){
+        if(qus_1_operator.hasClass("on")){
+            qus_1_operator.text("");
+            qus_1_operator.removeClass("on")
         }
-        operator.setAttribute("class","operator");
+        qus_1_operator.hide();
+        qus_1_editor.show();
+        qus_1_editor.focus();
     });
-    showAnswerBtn.addEventListener("click",function(e){
-        operator.innerHTML = answer;
-        operator.setAttribute("class","operator on");
-    })
-
-</script>
-
-<!--编辑器是公共部分，不属于标签本身-->
-<div class="editor">
-    <textarea class="content" style="display:none"></textarea>
-</div>
-<script>
-    var global_curr_operator;
-    var global_content = document.getElementsByClassName("content")[0];
-    var canWriteList = document.getElementsByClassName("canWrite");
-    global_content.addEventListener("input",function(){
-        global_curr_operator.innerText = global_content.value;
-    })
-    for(var i =0 ; i<canWriteList.length ; i++){
-        canWriteList[i].addEventListener("click",function(e){
-            if(global_curr_operator === e.target){
-                if(global_content.style.display === "block") {
-                    global_content.setAttribute("style","display:none");
-                }else{
-                    global_content.value = global_curr_operator.innerText;
-                    global_content.setAttribute("style","display:block");
-                }
-            }else{
-                global_curr_operator = e.target;
-                global_content.value = global_curr_operator.innerText;
-                global_content.setAttribute("style","display:block");
+    qus_1_showAnswerBtn.on("click",function(e){
+        qus_1_operator.text(qus_1_answer);
+        qus_1_operator.addClass("on");
+    });
+    qus_1_editor.on("keypress",function(e){
+        if(event.keyCode === 13) {
+            enterTimes++;
+            if(enterTimes>1){
+                enterTimes = 0;
+                qus_1_editor.hide();
+                qus_1_operator.text(qus_1_editor.val());
+                qus_1_operator.show();
             }
-        });
-    }
+        }
+    });
+    qus_1_editor.on("blur",function(e){
+        qus_1_editor.hide();
+        qus_1_operator.text(qus_1_editor.val());
+        qus_1_operator.show();
+    })
 
 </script>
+
 </body>
 
 </html>

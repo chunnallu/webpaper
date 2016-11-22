@@ -10,13 +10,13 @@ module.exports = function(){
             "<head>" +
                 "<meta charset='utf-8'>"+
             "<style>"+loadCommonStyle()+"</style>"+
+            '<script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>'+
             htmlData.head +
             "</head>" +
             "<body>" +
                 "<div class='mainContent'>"+
                      htmlData.body +
                  "</div>"+
-            loadEditor()+
             "</body>" +
             "</html>";
         return html;
@@ -25,7 +25,4 @@ module.exports = function(){
 
 function loadCommonStyle(){
    return fileHelper.readFile("resource/common/"+commonStyle);
-}
-function loadEditor(){
-    return fileHelper.readFile("resource/common/"+editorFile);
 }

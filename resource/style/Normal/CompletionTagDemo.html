@@ -3,103 +3,58 @@
     <meta charset="utf-8">
     <link href="../../common/common.css" rel="stylesheet"/>
     <link href="CompletionTag.css" rel="stylesheet"/>
+    <script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+    <style>
+
+    </style>
     <title>试卷题目</title>
 </head>
 
 <body>
 
-<div id='qus_1' class='topic Completion'>
-    <div class='question'>
-        1.中华人民共和国成立于<span class='operator canWrite'></span>年
-        [<span class='showAnswer'>显示答案</span>]
+<div id="qus_1" class="topic Completion">
+    <div class="question">
+        1.中华人民共和国成立于<span class="operator canWrite"></span><input class="CompletionEditor">年
+        [<span class="showAnswer">显示答案</span>]
     </div>
-    <input class='answer' type='hidden' value='1949'/>
+    <input class="answer" type="hidden" value="1949"/>
 </div>
 
 
 <script>
-    var qus_1 = document.getElementById("qus_1");
-    var qus_1_operator = qus_1.getElementsByClassName("operator")[0];
-    var qus_1_showAnswerBtn = qus_1.getElementsByClassName("showAnswer")[0];
-    var qus_1_answer = qus_1.getElementsByClassName("answer")[0].value;
-    qus_1_operator.addEventListener("click",function(e){
-        if(qus_1_operator.getAttribute("class").includes("on")){
-            qus_1_operator.innerHTML = "";
+    var qus_1 = $("#qus_1");
+    var qus_1_operator = qus_1.find(".operator");
+    var qus_1_showAnswerBtn = qus_1.find(".showAnswer");
+    var qus_1_answer = qus_1.find(".answer").val();
+    var qus_1_editor = qus_1.find(".CompletionEditor");
+    qus_1_operator.on("click",function(e){
+        if(qus_1_operator.hasClass("on")){
+            qus_1_operator.removeClass("on");
+            qus_1_operator.text("");
         }
-        qus_1_operator.setAttribute("class","operator");
+        qus_1_operator.hide();
+        qus_1_editor.show();
+        qus_1_editor.focus();
     });
-    qus_1_showAnswerBtn.addEventListener("click",function(e){
-        qus_1_operator.innerHTML = qus_1_answer;
-        qus_1_operator.setAttribute("class","operator on");
+    qus_1_showAnswerBtn.on("click",function(e){
+        qus_1_operator.text(qus_1_answer);
+        qus_1_operator.addClass("on");
     })
-
-</script>
-
-<div id='qus_2' class='topic Completion'>
-    <div class='question'>
-        1.中华人民共和国成立于<span class='operator canWrite'></span>年
-        [<span class='showAnswer'>显示答案</span>]
-    </div>
-    <input class='answer' type='hidden' value='1949'/>
-</div>
-
-
-<script>
-    var qus_2 = document.getElementById("qus_2");
-    var qus_2_operator = qus_2.getElementsByClassName("operator")[0];
-    var qus_2_showAnswerBtn = qus_2.getElementsByClassName("showAnswer")[0];
-    var qus_2_answer = qus_2.getElementsByClassName("answer")[0].value;
-    qus_2_operator.addEventListener("click",function(e){
-        if(qus_2_operator.getAttribute("class").includes("on")){
-            qus_2_operator.innerHTML = "";
+    qus_1_editor.on("keypress",function(e){
+        if(event.keyCode === 13) {
+            qus_1_editor.hide();
+            qus_1_operator.text(qus_1_editor.val());
+            qus_1_operator.show();
         }
-        qus_2_operator.setAttribute("class","operator");
-    });
-    qus_2_showAnswerBtn.addEventListener("click",function(e){
-        qus_2_operator.innerHTML = qus_2_answer;
-        qus_2_operator.setAttribute("class","operator on");
+    })
+    qus_1_editor.on("blur",function(e){
+        qus_1_editor.hide();
+        qus_1_operator.text(qus_1_editor.val());
+        qus_1_operator.show();
     })
 
 </script>
 
-<!--编辑器是公共部分，不属于标签本身-->
-<div class="editor" >
-    <textarea class="content" style="display: none"></textarea>
-</div>
-<script>
-    var global_curr_operator;
-    var global_content = document.getElementsByClassName("content")[0];
-    var canWriteList = document.getElementsByClassName("canWrite");
-    global_content.addEventListener("input",function(e){
-        e.stopPropagation();
-        global_curr_operator.innerText = global_content.value;
-    })
-    for(var i =0 ; i<canWriteList.length ; i++){
-        canWriteList[i].addEventListener("click",function(e){
-            e.stopPropagation();
-            if(global_curr_operator === e.target){
-                if(global_content.style.display === "block") {
-                    global_content.setAttribute("style","display:none");
-                }else{
-                    global_content.value = global_curr_operator.innerText;
-                    global_content.setAttribute("style","display:block");
-                }
-            }else{
-                global_curr_operator = e.target;
-                global_content.value = global_curr_operator.innerText;
-                global_content.setAttribute("style","display:block");
-            }
-        });
-    }
-    var topics = document.getElementsByClassName("topic");
-    for(var i = 0 ; i< topics.length ; i++ ){
-        topics[i].addEventListener("click",function(){
-            global_content.setAttribute("style","display:none");
-        });
-    }
-
-
-</script>
 
 
 </body>

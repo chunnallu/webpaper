@@ -11,7 +11,7 @@ function transform(addr){
     });
 
     lineReader.on('line', function (line) {
-        console.log("\""+line+"\"+");
+        console.log("\'"+line+"\'+");
     });
 
     lineReader.on("close",function(){

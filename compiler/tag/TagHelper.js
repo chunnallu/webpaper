@@ -1,15 +1,15 @@
 /**
  * Created by Administrator on 2016/10/11.
  */
-var constants = require("../constants.js")
-var JudgeTag = require("./JudgeTag.js")
-var TitleTag = require("./TitleTag.js")
-var PartTag = require("./PartTag.js")
-var SingleSelectionTag = require("./SingleSelectionTag.js")
-var MultiSelectionTag = require("./MultiSelectionTag.js")
-var CompletionTag = require("./CompletionTag.js")
-var EssayTag = require("./EssayTag.js")
-var PlainTextTag = require("./PlainTextTag.js")
+var constants = require("../constants.js");
+var JudgeTag = require("./JudgeTag.js");
+var TitleTag = require("./TitleTag.js");
+var PartTag = require("./PartTag.js");
+var SingleSelectionTag = require("./SingleSelectionTag.js");
+var MultiSelectionTag = require("./MultiSelectionTag.js");
+var CompletionTag = require("./CompletionTag.js");
+var EssayTag = require("./EssayTag.js");
+var PlainTextTag = require("./PlainTextTag.js");
 var QuestionType = constants.QuestionType;
 var QuestionClass = constants.QuestionClass;
 

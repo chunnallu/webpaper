@@ -22,3 +22,13 @@
 .Essay .on{
     color:red;
 }
+
+.Essay .editor{
+    display: none;
+    position: relative;
+    top:1em;
+    width: 90%;
+    min-height: 10em;
+    max-height: 30em;
+    resize:vertical;
+}
