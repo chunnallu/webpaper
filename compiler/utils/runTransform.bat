@@ -1,0 +1,2 @@
+node transformString.js
+pause
